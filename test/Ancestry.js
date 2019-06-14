@@ -2,8 +2,7 @@ const Ancestry = artifacts.require("Ancestry");
 
 contract("Ancestry", accounts => {
     it("should procreate.", async () => {
-        const instance = await Ancestry.new("0x0000000000000000000000000000000000000000", []);
-        console.log(instance.address);
+        const instance = await Ancestry.new();
         const child1tx = await instance.procreate();
         const child1 = await Ancestry.at(child1tx.logs[0].args.child);
         const child2tx = await instance.procreate();

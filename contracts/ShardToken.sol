@@ -28,6 +28,7 @@ contract ShardToken is Ownable, Ancestry {
         public
         onlyOwner()
     {
+        require(balance == 0, "NONZERO_BALANCE");
         selfdestruct(msg.sender);
     }
 

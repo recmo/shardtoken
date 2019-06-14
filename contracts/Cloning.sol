@@ -1,6 +1,6 @@
 pragma solidity >=0.4.21 <0.6.0;
 
-/// TODO: This should be natively supported by Solidity. The way this
+/// TODO: This should ideally be natively supported by Solidity. The way this
 ///       works arround constructors using initialization functions is
 ///       hacky and error-prone.
 
@@ -17,7 +17,7 @@ contract Cloning {
         }
     }
 
-    /// Create a copy of a contract with state set to zero.
+    /// Create a copy of a contract with all state set to zero.
     function clone(address original)
         public
         returns (address result)
@@ -44,7 +44,7 @@ contract Cloning {
                 shl(88, original),
                 0x730000000000000000000000000000000000000000803b3d3d833c3b3df30000
             ))
-            result := create(0, 0, 32)
+            result := create(0, 0, 30)
         }
         require(original != result && codehash(original) == codehash(result), "CREATE failed");
         emit cloned(result);

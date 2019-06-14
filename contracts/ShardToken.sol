@@ -39,7 +39,7 @@ contract ShardToken is Ownable, Ancestry {
         public
         onlyOwner()
     {
-        require(balance > amount, "INSUFFICIENT_FUNDS");
+        require(balance >= amount, "INSUFFICIENT_FUNDS");
         balance -= amount;
         receipient.receive(amount, BIRTH_CERTIFICATE);
     }
